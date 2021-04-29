@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+body{
+  overflow: hidden;
+  margin: 0;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #4361ee;
+}
+
+.title{
+  text-align: center;
+  position: absolute;
+  top: 5%;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1{
+  font-size: 50px;
+}
+
+p{
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.cuboid{
+  --width: 20vmin;
+  --height: 20vmin;
+  --depth: 20vmin;
+  width: var(--width);
+  height: var(--height);
+  position: relative;
+  transform: rotateX(24deg) rotateY(32deg);
+  transform-style: preserve-3d;
+
+  animation: rot 3s infinite ease-in-out alternate;
+}
+
+@keyframes rot {
+  to{
+    transform: rotate3d(1, 1, 1, -90deg);
+  }
+}
+
+.cuboid_side{
+  opacity: 0.8;
+  position: absolute;
+}
+
+.cuboid_side:nth-of-type(1),
+.cuboid_side:nth-of-type(2){
+  --coefficient: -0.5;
+  height: var(--height);
+  width: var(--width);
+  transform: translate3d(0, 0, calc(var(--depth)*var(--coefficient)));
+  background: #f72585;
+}
+
+.cuboid_side:nth-of-type(2){
+  --coefficient: 0.5;
+}
+
+.cuboid_side:nth-of-type(3),
+.cuboid_side:nth-of-type(4){
+  --rotation: 90deg;
+  top: 50%;
+  left: 50%;
+  height: var(--height);
+  width: var(--depth);
+  transform: translate(-50%, -50%) rotateY(var(--rotation)) translate3d(0, 0, calc(var(--width)*-0.5));
+  background: #7209b7;
+}
+
+.cuboid_side:nth-of-type(4){
+  --rotation:-90deg;
+}
+
+.cuboid_side:nth-of-type(4),
+.cuboid_side:nth-of-type(5){
+  --rotation: 90deg;
+  top: 50%;
+  left: 50%;
+  height: var(--depth);
+  width: var(--width);
+  transform: translate(-50%, -50%) rotateX(var(--rotation)) translate3d(0, 0, calc(var(--height)*-0.5));
+  background: #3a0ca3;
+}
+
+.cuboid_side:nth-of-type(5){
+  --rotation: -90deg;
+}
